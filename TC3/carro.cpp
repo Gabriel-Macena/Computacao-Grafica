@@ -22,12 +22,14 @@ void Carro::desenhaAcopl(double width, double height, double proportion, int top
 		top = -1;
 	else
 		top = 1;
+
 	glPushMatrix();
 	glTranslatef(width * -sin(angulo * DEG2RAD)/2, top*height*proportion/2, 0);
 	glRotatef(angulo, 0, 0, 1);
 	desenhaRetangulo(ACOPL_WIDTH, ACOPL_HEIGHT, 0.2, 0.6, 0.7);
 	glTranslatef(0, ACOPL_HEIGHT, 0);
-	glRotatef(_angRodas, 0, 0, 1);
+	if (top == 1)
+		glRotatef(_angRodas, 0, 0, 1);
 	desenhaRetangulo(RODA_WIDTH, RODA_HEIGHT, 0.2, 0.6, 0.7);
 
 	int direction = angulo/abs(angulo);
@@ -102,7 +104,7 @@ Tiro* Carro::atirar() {
 
 }
 void Carro::andar(int direction, GLdouble timeDiff) {
-	_angCarro += timeDiff * _angRodas/360;//_velCarro * (_angRodas/((2 - 0.3*M_PI)*LIMITE_ANGULO));
+	_angCarro += direction * timeDiff * _angRodas/360;//_velCarro * (_angRodas/((2 - 0.3*M_PI)*LIMITE_ANGULO));
 	if (_angCarro < 0) _angCarro = 360 + _angCarro;
 	else if(_angCarro > 360) _angCarro = _angCarro - 360;
 	_posRanhuras += direction * timeDiff * _velCarro/(2 * M_PI * RODA_WIDTH * _circ->raio);

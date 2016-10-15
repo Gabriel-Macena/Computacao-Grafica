@@ -61,7 +61,7 @@ class Carro {
 	public:
 		Carro() {
 			_circ = (Circulo*) malloc(sizeof(Circulo));
-			_angCarro = 180;
+			_angCarro = 0;
 			_angCanhao = 0;
 			_angRodas = 0;
 			_posRanhuras = DIST_RANHURAS/2;
