@@ -172,8 +172,8 @@ void idle(void) {
 }
 
 void mouseDrag(int x, int y) {
-	static int lastMouseX = pistaExterna.raio;
-	jogador->virarCanhao(2 * (x < lastMouseX) - (lastMouseX < x));
+	static int lastMouseX = 0;
+	jogador->virarCanhao( 2 * ((x < lastMouseX) - (lastMouseX < x)) );
 	lastMouseX = x;
 }
 
